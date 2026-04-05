@@ -42,6 +42,6 @@ jobs:
                   username: ${{ secrets.DEV_FTP_USERNAME }}
                   server: ${{ secrets.DEV_FTP_SERVER }}
                   port: 22
-                  local_path: "./dist/*"
+                  local_path: "./dist/"
                   remote_path: "/home/sakaki-keita/www/build-deploy-actions/"
                   ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
