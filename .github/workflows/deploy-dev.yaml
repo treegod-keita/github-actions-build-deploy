@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v6
+              uses: actions/checkout@v4
 
             - name: Install pnpm
               uses: pnpm/action-setup@v4
@@ -18,7 +18,7 @@ jobs:
                   version: latest
 
             - name: Set up Node.js
-              uses: actions/setup-node@v6
+              uses: actions/setup-node@v4
               with:
                   node-version: "24"
                   cache: "pnpm"
@@ -32,16 +32,12 @@ jobs:
             - name: Check dist
               run: ls -la dist/
 
-            - name: Deploy via FTP
-              uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+            - name: Deploy to Server
+              uses: wlixcc/SFTP-Deploy-Action@v1.2.4
               with:
                   server: ${{ secrets.DEV_FTP_SERVER }}
                   username: ${{ secrets.DEV_FTP_USERNAME }}
                   password: ${{ secrets.DEV_FTP_PASSWORD }}
-                  local-dir: ./dist/
-                  server-dir: /home/sakaki-keita/
-                  dangerous-clean-slate: false
-                  exclude: |
-                      **/.git*
-                      **/.git*/**
-                      **/node_modules/**
+                  local_path: "./dist/*"
+                  remote_path: "/home/sakaki-keita/"
+                  rsyncArgs: "--exclude=node_modules --exclude=.git"
