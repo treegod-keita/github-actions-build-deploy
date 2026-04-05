@@ -41,4 +41,4 @@ jobs:
                   port: 22
                   local_path: "./dist/*"
                   remote_path: "/home/sakaki-keita/"
-                  password: ${{ secrets.DEV_FTP_PASSWORD }}
+                  ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
