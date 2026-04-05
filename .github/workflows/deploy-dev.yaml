@@ -28,3 +28,6 @@ jobs:
 
             - name: build assets
               run: pnpm run build
+
+            - name: Check dist
+              run: ls -la dist/
