@@ -17,7 +17,7 @@ jobs:
               with:
                   version: latest
 
-            - name: Set up Node.jobs
+            - name: Set up Node.js
               uses: actions/setup-node@v6
               with:
                   node-version: "24"
@@ -31,3 +31,17 @@ jobs:
 
             - name: Check dist
               run: ls -la dist/
+
+            - name: Deploy via FTP
+              uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+              with:
+                  server: ${{ secrets.DEV_FTP_SERVER }}
+                  username: ${{ secrets.DEV_FTP_USERNAME }}
+                  password: ${{ secrets.DEV_FTP_PASSWORD }}
+                  local-dir: ./dist/
+                  server-dir: /home/sakaki-keita/
+                  dangerous-clean-slate: false
+                  exclude: |
+                      **/.git*
+                      **/.git*/**
+                      **/node_modules/**
