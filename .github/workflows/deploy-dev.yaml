@@ -40,5 +40,5 @@ jobs:
                   server: ${{ secrets.DEV_FTP_SERVER }}
                   port: 22
                   local_path: "./dist/*"
-                  remote_path: "/home/sakaki-keita/"
+                  remote_path: "/home/sakaki-keita/www/"
                   ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
